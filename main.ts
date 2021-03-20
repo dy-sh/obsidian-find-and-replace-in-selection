@@ -11,7 +11,7 @@ interface PluginSettings {
 const DEFAULT_SETTINGS: PluginSettings = {
 	findText: '',
 	findRegexp: '',
-	regexpFlags: 'g',
+	regexpFlags: '',
 	replace: ''
 }
 
@@ -41,11 +41,11 @@ export default class FindAndReplaceInSelection extends Plugin {
 			let selectedText = editor.getSelection();
 
 			if (this.settings.findText && this.settings.findText != "") {
-				selectedText = selectedText.replace(this.settings.findText, this.settings.replace);
+				selectedText = selectedText.split(this.settings.findText).join(this.settings.replace);
 			}
 
 			if (this.settings.findRegexp && this.settings.findRegexp != "") {
-				var re = new RegExp(this.settings.findRegexp,"g");
+				var re = new RegExp(this.settings.findRegexp, this.settings.regexpFlags);
 				selectedText = selectedText.replace(re, this.settings.replace);
 			}
 
@@ -101,7 +101,7 @@ class SettingTab extends PluginSettingTab {
 			.setName('RegExp to find')
 			.setDesc('Leave empty to ignore')
 			.addText(text => text
-				.setPlaceholder('Example: ab+c')
+				.setPlaceholder('Example: (\w+)\s(\w+)')
 				.setValue(this.plugin.settings.findRegexp)
 				.onChange(async (value) => {
 					this.plugin.settings.findRegexp = value;
@@ -110,9 +110,9 @@ class SettingTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName('RegExp flags')
-			.setDesc('Leave empty to ignore')
+			.setDesc('Type "gmi" for global, multiline, insensitive')
 			.addText(text => text
-				.setPlaceholder('Example: "g" for global')
+				.setPlaceholder('Example: gmi')
 				.setValue(this.plugin.settings.regexpFlags)
 				.onChange(async (value) => {
 					this.plugin.settings.regexpFlags = value;
@@ -123,7 +123,7 @@ class SettingTab extends PluginSettingTab {
 			.setName('Replace by')
 			.setDesc('Text to be inserted')
 			.addText(text => text
-				.setPlaceholder('')
+				.setPlaceholder('Example: $2, $1')
 				.setValue(this.plugin.settings.replace)
 				.onChange(async (value) => {
 					this.plugin.settings.replace = value;
