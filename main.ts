@@ -38,7 +38,7 @@ export default class FindAndReplaceInSelection extends Plugin {
 	findAndReplace(): void {
 		let editor = this.getEditor();
 		if (editor) {
-			let selectedText = editor.getSelection();
+			let selectedText = this.getSelectedText(editor);
 
 			if (this.settings.findText && this.settings.findText != "") {
 				selectedText = selectedText.split(this.settings.findText).join(this.settings.replace);
@@ -57,7 +57,30 @@ export default class FindAndReplaceInSelection extends Plugin {
 		return this.app.workspace.getActiveViewOfType(MarkdownView)?.sourceMode.cmEditor;
 	}
 
+	getSelectedText(editor: CodeMirror.Editor): string {
+		if (!editor.somethingSelected())
+			this.selectLineUnderCursor(editor);
 
+		return editor.getSelection();
+	}
+
+	selectLineUnderCursor(editor: CodeMirror.Editor) {
+		let selection = this.getLineUnderCursor(editor);
+		editor.getDoc().setSelection(selection.start, selection.end);
+	}
+
+	getLineUnderCursor(editor: CodeMirror.Editor): SelectionRange {
+		let fromCh, toCh: number;
+		let cursor = editor.getCursor();
+
+		fromCh = 0;
+		toCh = editor.getLine(cursor.line).length;
+
+		return {
+			start: { line: cursor.line, ch: fromCh },
+			end: { line: cursor.line, ch: toCh },
+		};
+	}
 
 
 	async loadSettings() {
