@@ -33,6 +33,6 @@ If you want to make all H1 become H2, all H2 become H3, H3 become H4, then you n
 - Replace by: "```![]($2)```"
 
 As result, this: 
-```[Description](URL)```
+```![Description](URL)```
 will become:
-```[](URL)```
+```![](URL)```
