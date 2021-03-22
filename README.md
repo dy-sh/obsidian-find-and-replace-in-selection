@@ -11,7 +11,7 @@ Assign a hotkey to "Find and replace in selection" command.
 - In the plugin settings, specify which text to search for (plain text or regular expression) and what to replace it with. 
 - Just select the text (you can select the entire note) and press hotkey or call "Find and replace in selection" command. To quickly make a replacement in one line of text, you can simply put the cursor on this line and press the hotkey.
 
-### Examples:
+### Examples
 
 **To remove bold highlighting from all text**:
 
@@ -25,3 +25,14 @@ Assign a hotkey to "Find and replace in selection" command.
 - Replace by: "### " (space at the end)
 
 If you want to make all H1 become H2, all H2 become H3, H3 become H4, then you need to start with H3, then H2, then H1.
+
+**Remove all display text from embed links**:
+
+- RegExp to find: "```(?<!\\)\!\[(.*?)(?<!\\)\]\((.*?)(?<!\\)\)```"
+- RegExp flags: "gm"
+- Replace by: "```![]($2)```"
+
+As result, this: 
+```[Description](URL)```
+will become:
+```[](URL)```
