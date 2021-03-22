@@ -13,12 +13,12 @@ Assign a hotkey to "Find and replace in selection" command.
 
 ### Examples
 
-**To remove bold highlighting from all text**:
+**Remove bold highlighting from all text**:
 
 - Text to find: "**"
 - Replace by: "" (empty)
 
-**To replace all H2 headers with H3 headers**:
+**Replace all H2 headers with H3 headers**:
 
 - RegExp to find: "^## " (space at the end)
 - RegExp flags: "gm" (global, multiline)
