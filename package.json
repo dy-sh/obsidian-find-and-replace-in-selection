@@ -1,7 +1,7 @@
 {
   "name": "find-and-replace-in-selection",
   "version": "1.0.1",
-  "description": "Finds what you are looking for in the selected text and replaces it with the specified",
+  "description": "Finds what you are looking for in the selected text and replaces it with the specified text",
   "main": "main.js",
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",
