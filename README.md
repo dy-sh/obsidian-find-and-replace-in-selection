@@ -15,13 +15,13 @@ Assign a hotkey to "Find and replace in selection" command.
 
 **To remove bold highlighting from all text**:
 
-Text to find: "**"
-Replace by: "" (empty)
+- Text to find: "**"
+- Replace by: "" (empty)
 
 **To replace all H2 headers with H3 headers**:
 
-RegExp to find: "^## " (space at the end)
-RegExp flags: "g" (global)
-Replace by: "### " (space at the end)
+- RegExp to find: "^## " (space at the end)
+- RegExp flags: "gm" (global, multiline)
+- Replace by: "### " (space at the end)
 
 If you want to make all H1 become H2, all H2 become H3, H3 become H4, then you need to start with H3, then H2, then H1.
