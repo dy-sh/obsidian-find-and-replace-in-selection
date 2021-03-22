@@ -110,7 +110,7 @@ class SettingTab extends PluginSettingTab {
 		containerEl.createEl('h2', { text: 'Find and replace in selection - Settings' });
 
 		new Setting(containerEl)
-			.setName('Find to find')
+			.setName('Text to find')
 			.setDesc('Leave empty to ignore')
 			.addText(text => text
 				.setPlaceholder('')
