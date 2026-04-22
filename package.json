@@ -1,6 +1,6 @@
 {
   "name": "find-and-replace-in-selection",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Finds what you are looking for in the selected text and replaces it with the specified text",
   "main": "main.js",
   "scripts": {
